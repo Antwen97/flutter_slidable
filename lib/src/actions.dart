@@ -100,18 +100,20 @@ class CustomSlidableAction extends StatelessWidget {
         child: SizedBox(
           width: width,
           height: height,
-          child: OutlinedButton(
-            onPressed: () => _handleTap(context),
-            style: OutlinedButton.styleFrom(
-              padding: padding,
-              backgroundColor: backgroundColor,
-              primary: effectiveForegroundColor,
-              onSurface: effectiveForegroundColor,
-              shape: shape ?? const RoundedRectangleBorder(),
-              side: BorderSide.none,
-              elevation: elevation ?? 0
+          child: Padding(
+            padding: padding ?? EdgeInsets.zero,
+            child: OutlinedButton(
+              onPressed: () => _handleTap(context),
+              style: OutlinedButton.styleFrom(
+                  backgroundColor: backgroundColor,
+                  primary: effectiveForegroundColor,
+                  onSurface: effectiveForegroundColor,
+                  shape: shape ?? const RoundedRectangleBorder(),
+                  side: BorderSide.none,
+                  elevation: elevation ?? 0
+              ),
+              child: child,
             ),
-            child: child,
           ),
         ),
       );
@@ -120,18 +122,20 @@ class CustomSlidableAction extends StatelessWidget {
       return Expanded(
         flex: flex,
         child: SizedBox.expand(
-          child: OutlinedButton(
-            onPressed: () => _handleTap(context),
-            style: OutlinedButton.styleFrom(
-              padding: padding,
-              backgroundColor: backgroundColor,
-              primary: effectiveForegroundColor,
-              onSurface: effectiveForegroundColor,
-              shape: shape ?? const RoundedRectangleBorder(),
-              side: BorderSide.none,
-              elevation: elevation ?? 0
+          child: Padding(
+            padding: padding ?? EdgeInsets.zero,
+            child: OutlinedButton(
+              onPressed: () => _handleTap(context),
+              style: OutlinedButton.styleFrom(
+                  backgroundColor: backgroundColor,
+                  primary: effectiveForegroundColor,
+                  onSurface: effectiveForegroundColor,
+                  shape: shape ?? const RoundedRectangleBorder(),
+                  side: BorderSide.none,
+                  elevation: elevation ?? 0
+              ),
+              child: child,
             ),
-            child: child,
           ),
         ),
       );
