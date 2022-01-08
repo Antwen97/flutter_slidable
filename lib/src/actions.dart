@@ -27,6 +27,7 @@ class CustomSlidableAction extends StatelessWidget {
     this.elevation,
     this.width,
     this.height,
+    this.padding,
     required this.onPressed,
     required this.child,
   })  : assert(flex > 0),
@@ -83,6 +84,8 @@ class CustomSlidableAction extends StatelessWidget {
 
   final double? height;
 
+  final EdgeInsetsGeometry? padding;
+
   @override
   Widget build(BuildContext context) {
     final effectiveForegroundColor = foregroundColor ??
@@ -116,17 +119,20 @@ class CustomSlidableAction extends StatelessWidget {
       return Expanded(
         flex: flex,
         child: SizedBox.expand(
-          child: OutlinedButton(
-            onPressed: () => _handleTap(context),
-            style: OutlinedButton.styleFrom(
-                backgroundColor: backgroundColor,
-                primary: effectiveForegroundColor,
-                onSurface: effectiveForegroundColor,
-                shape: shape ?? const RoundedRectangleBorder(),
-                side: BorderSide.none,
-                elevation: elevation ?? 0
+          child: Padding(
+            padding: padding ?? EdgeInsets.zero,
+            child: OutlinedButton(
+              onPressed: () => _handleTap(context),
+              style: OutlinedButton.styleFrom(
+                  backgroundColor: backgroundColor,
+                  primary: effectiveForegroundColor,
+                  onSurface: effectiveForegroundColor,
+                  shape: shape ?? const RoundedRectangleBorder(),
+                  side: BorderSide.none,
+                  elevation: elevation ?? 0
+              ),
+              child: child,
             ),
-            child: child,
           ),
         ),
       );
@@ -164,6 +170,7 @@ class SlidableAction extends StatelessWidget {
     this.elevation,
     this.width,
     this.height,
+    this.innerPadding,
     this.label,
   })  : assert(flex > 0),
         assert(icon != null || label != null),
@@ -204,6 +211,8 @@ class SlidableAction extends StatelessWidget {
   final double? width;
 
   final double? height;
+
+  final EdgeInsetsGeometry? innerPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -253,6 +262,7 @@ class SlidableAction extends StatelessWidget {
       elevation: elevation,
       width: width,
       height: height,
+      padding: innerPadding,
       child: child,
     );
   }
