@@ -25,6 +25,8 @@ class CustomSlidableAction extends StatelessWidget {
     this.autoClose = _kAutoClose,
     this.shape,
     this.elevation,
+    this.width,
+    this.height,
     required this.onPressed,
     required this.child,
   })  : assert(flex > 0),
@@ -77,6 +79,10 @@ class CustomSlidableAction extends StatelessWidget {
   ///The button elevation
   final double? elevation;
 
+  final double? width;
+
+  final double? height;
+
   @override
   Widget build(BuildContext context) {
     final effectiveForegroundColor = foregroundColor ??
@@ -85,23 +91,46 @@ class CustomSlidableAction extends StatelessWidget {
             ? Colors.black
             : Colors.white);
 
-    return Expanded(
-      flex: flex,
-      child: SizedBox.expand(
-        child: OutlinedButton(
-          onPressed: () => _handleTap(context),
-          style: OutlinedButton.styleFrom(
-            backgroundColor: backgroundColor,
-            primary: effectiveForegroundColor,
-            onSurface: effectiveForegroundColor,
-            shape: shape ?? const RoundedRectangleBorder(),
-            side: BorderSide.none,
-            elevation: elevation ?? 0
+    if(width != null || height != null) {
+      return Expanded(
+        flex: flex,
+        child: SizedBox(
+          width: width,
+          height: height,
+          child: OutlinedButton(
+            onPressed: () => _handleTap(context),
+            style: OutlinedButton.styleFrom(
+              backgroundColor: backgroundColor,
+              primary: effectiveForegroundColor,
+              onSurface: effectiveForegroundColor,
+              shape: shape ?? const RoundedRectangleBorder(),
+              side: BorderSide.none,
+              elevation: elevation ?? 0
+            ),
+            child: child,
           ),
-          child: child,
         ),
-      ),
-    );
+      );
+    }
+    else {
+      return Expanded(
+        flex: flex,
+        child: SizedBox.expand(
+          child: OutlinedButton(
+            onPressed: () => _handleTap(context),
+            style: OutlinedButton.styleFrom(
+                backgroundColor: backgroundColor,
+                primary: effectiveForegroundColor,
+                onSurface: effectiveForegroundColor,
+                shape: shape ?? const RoundedRectangleBorder(),
+                side: BorderSide.none,
+                elevation: elevation ?? 0
+            ),
+            child: child,
+          ),
+        ),
+      );
+    }
   }
 
   void _handleTap(BuildContext context) {
@@ -133,6 +162,8 @@ class SlidableAction extends StatelessWidget {
     this.spacing = 4,
     this.shape,
     this.elevation,
+    this.width,
+    this.height,
     this.label,
   })  : assert(flex > 0),
         assert(icon != null || label != null),
@@ -169,6 +200,10 @@ class SlidableAction extends StatelessWidget {
 
   ///The button elevation
   final double? elevation;
+
+  final double? width;
+
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -216,6 +251,8 @@ class SlidableAction extends StatelessWidget {
       flex: flex,
       shape: shape,
       elevation: elevation,
+      width: width,
+      height: height,
       child: child,
     );
   }
