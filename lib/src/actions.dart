@@ -23,6 +23,7 @@ class CustomSlidableAction extends StatelessWidget {
     this.backgroundColor = _kBackgroundColor,
     this.foregroundColor,
     this.autoClose = _kAutoClose,
+    this.shape,
     required this.onPressed,
     required this.child,
   })  : assert(flex > 0),
@@ -69,11 +70,13 @@ class CustomSlidableAction extends StatelessWidget {
   /// Typically the action's icon or label.
   final Widget child;
 
+  final OutlinedBorder? shape;
+
   @override
   Widget build(BuildContext context) {
     final effectiveForegroundColor = foregroundColor ??
         (ThemeData.estimateBrightnessForColor(backgroundColor) ==
-                Brightness.light
+            Brightness.light
             ? Colors.black
             : Colors.white);
 
@@ -86,7 +89,7 @@ class CustomSlidableAction extends StatelessWidget {
             backgroundColor: backgroundColor,
             primary: effectiveForegroundColor,
             onSurface: effectiveForegroundColor,
-            shape: const RoundedRectangleBorder(),
+            shape: shape ?? const RoundedRectangleBorder(),
             side: BorderSide.none,
           ),
           child: child,
@@ -122,6 +125,7 @@ class SlidableAction extends StatelessWidget {
     required this.onPressed,
     this.icon,
     this.spacing = 4,
+    this.shape,
     this.label,
   })  : assert(flex > 0),
         assert(icon != null || label != null),
@@ -153,6 +157,9 @@ class SlidableAction extends StatelessWidget {
   /// A label to display below the [icon].
   final String? label;
 
+  /// The button shape style
+  final OutlinedBorder? shape;
+
   @override
   Widget build(BuildContext context) {
     final children = <Widget>[];
@@ -181,15 +188,15 @@ class SlidableAction extends StatelessWidget {
     final child = children.length == 1
         ? children.first
         : Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ...children.map(
-                (child) => Flexible(
-                  child: child,
-                ),
-              )
-            ],
-          );
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ...children.map(
+              (child) => Flexible(
+            child: child,
+          ),
+        )
+      ],
+    );
 
     return CustomSlidableAction(
       onPressed: onPressed,
@@ -197,6 +204,7 @@ class SlidableAction extends StatelessWidget {
       backgroundColor: backgroundColor,
       foregroundColor: foregroundColor,
       flex: flex,
+      shape: shape,
       child: child,
     );
   }
