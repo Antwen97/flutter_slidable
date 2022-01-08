@@ -24,6 +24,7 @@ class CustomSlidableAction extends StatelessWidget {
     this.foregroundColor,
     this.autoClose = _kAutoClose,
     this.shape,
+    this.elevation,
     required this.onPressed,
     required this.child,
   })  : assert(flex > 0),
@@ -70,7 +71,11 @@ class CustomSlidableAction extends StatelessWidget {
   /// Typically the action's icon or label.
   final Widget child;
 
+  /// The button shape style
   final OutlinedBorder? shape;
+
+  ///The button elevation
+  final double? elevation;
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +96,7 @@ class CustomSlidableAction extends StatelessWidget {
             onSurface: effectiveForegroundColor,
             shape: shape ?? const RoundedRectangleBorder(),
             side: BorderSide.none,
+            elevation: elevation ?? 0
           ),
           child: child,
         ),
@@ -126,6 +132,7 @@ class SlidableAction extends StatelessWidget {
     this.icon,
     this.spacing = 4,
     this.shape,
+    this.elevation,
     this.label,
   })  : assert(flex > 0),
         assert(icon != null || label != null),
@@ -159,6 +166,9 @@ class SlidableAction extends StatelessWidget {
 
   /// The button shape style
   final OutlinedBorder? shape;
+
+  ///The button elevation
+  final double? elevation;
 
   @override
   Widget build(BuildContext context) {
@@ -205,6 +215,7 @@ class SlidableAction extends StatelessWidget {
       foregroundColor: foregroundColor,
       flex: flex,
       shape: shape,
+      elevation: elevation,
       child: child,
     );
   }
