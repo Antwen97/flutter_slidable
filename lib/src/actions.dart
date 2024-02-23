@@ -105,9 +105,8 @@ class CustomSlidableAction extends StatelessWidget {
             child: OutlinedButton(
               onPressed: () => _handleTap(context),
               style: OutlinedButton.styleFrom(
+                  foregroundColor: effectiveForegroundColor,
                   backgroundColor: backgroundColor,
-                  primary: effectiveForegroundColor,
-                  onSurface: effectiveForegroundColor,
                   shape: shape ?? const RoundedRectangleBorder(),
                   side: BorderSide.none,
                   elevation: elevation ?? 0
@@ -128,8 +127,7 @@ class CustomSlidableAction extends StatelessWidget {
               onPressed: () => _handleTap(context),
               style: OutlinedButton.styleFrom(
                   backgroundColor: backgroundColor,
-                  primary: effectiveForegroundColor,
-                  onSurface: effectiveForegroundColor,
+                  foregroundColor: effectiveForegroundColor,
                   shape: shape ?? const RoundedRectangleBorder(),
                   side: BorderSide.none,
                   elevation: elevation ?? 0
